@@ -1,0 +1,24 @@
+Order ID:308
+ Order Date:2019-02-12 10:35:41.000000
+ Payment Method:Cash on delivery
+ ---------------------------
+Name:EasyDelivery Customer
+ Phone:8888888888
+ Address:72 Willow Avenue 
+ City:Hoboken
+ Postal Code:07030
+ Notes:
+ ---------------------------
+Name:EasyDelivery Customer
+ Address:72 Willow Avenue 
+ City:Hoboken
+ Postal Code:07030
+ ---------------------------
+---------------------------
+x1)Box Meal - Large
+---------------------------
+Subtotal:7
+
+---------------------------
+Discount:0
+Total:7.00

@@ -1,0 +1,211 @@
+<html>
+  <head>
+    <script src="order.js"></script>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="node_modules/xel/themes/material.css">
+  <script src="node_modules/xel/xel.min.js"></script>
+    <link rel="stylesheet" href="node_modules/photonkit/dist/css/photon.css">
+        <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+        <link rel="stylesheet" href="order.css">
+
+
+  </head>
+
+  <body>
+   
+
+
+
+
+
+
+ 
+
+
+
+
+<div class="window">
+
+
+<header class="toolbar toolbar-header">
+ 
+
+  <div class="toolbar-actions">
+
+    
+
+    
+    <button class="button is-warning pull-left" id="cancel_order">
+      Rifiuta Ordine
+    </button>
+    <button class="button is-danger pull-left" id="delete_order">
+      Delete Order
+    </button>
+
+      <button class="button is-success pull-left" id="complete_order">
+      Completed
+    </button>
+      <div class="minutes-container" style="display:none">
+                                        
+                                  
+                                        
+
+
+                                        </div>
+     <button class="button is-success pull-left" id="accept_order" style="display:none;">
+      Accept Order
+    </button>
+
+      <button class="button is-primary pull-right" id="print_order">
+      Print Order
+    </button>
+  </div>
+</header>
+  <div class="window-content">
+    <div class="pane-group">
+
+      <div class="pane-md" style="padding:20px;">
+
+        <h3 id="customer_details_label">Customer Details</h3>
+<form>
+   
+    <x-label id="name_label">Full Name</x-label>
+     <x-box>
+   <x-input type="text" placeholder="First Name" id="billing_first_name"></x-input>
+    <x-input type="text" placeholder="Last Name" id="billing_last_name"></x-input>
+    </x-box>
+  
+    <x-label id="phone_label">Phone</x-label>
+    <x-box>
+    <x-input type="text" placeholder="Phone" id="billing_phone"></x-input>
+  </x-box>
+      
+    <x-label id ="address_label">Address</x-label>
+    <x-box>
+    <x-input type="text"  placeholder="Address" id="billing_address_1"></x-input>
+    <x-input type="text"  placeholder="Address" id="billing_address_2"></x-input>
+    </x-box>
+    <x-label id="city_label">City</x-label>
+    <x-box>
+    <x-input type="text" placeholder="City" id="billing_city"></x-input>
+    </x-box>
+   
+    <x-label id="postcode_label">Postal</x-label>
+    <x-box>
+    <x-input type="text" placeholder="Postal" id="billing_postcode"></x-input>
+    </x-box>
+
+ 
+    <x-label id="notes_label">Customer Notes</x-label>
+    <x-box>
+    <textarea  rows="3" placeholder="Customer notes...." id="billing_customer_note"></textarea>
+    </x-box>
+
+    
+ 
+
+  </form>
+
+
+
+      </div>
+      <div class="pane" style="padding:20px;">
+
+      <h3 id="order_details_label">Order Details</h3>
+
+      <table class="table">
+  <thead>
+    <tr>
+      <th><abbr id="product_label">Product</abbr></th>
+      <th><abbr id="price_label">Price</abbr></th>
+      <th><abbr id="qty_label">QTY</abbr></th>
+      <th><abbr id="total_label">Total</abbr></th>
+      
+    </tr>
+  </thead>
+  
+  <tbody id="order-line-items">
+  </tbody>
+  </table>
+
+
+
+
+
+
+
+      
+
+
+
+    </div>
+    </div>
+  </div>
+
+  <footer class="toolbar toolbar-footer">
+  <div class="toolbar-actions">
+    
+<div class="columns">
+
+
+<div class="column">
+<h5 id="order_date_label" style="
+    float: left;
+" >Date:</h5><h5 id="order_date_text" style="
+    float: left;
+    font-weight: bold;
+"></h5>
+</div>
+
+<div class="column">
+<h5 id="payment_method_label" style="
+    float: left;
+" >Payment Method:</h5><h5 id="payment_method_text" style="
+    float: left;
+    font-weight: bold;
+"></h5>
+</div>
+
+<div class="column">
+ <h5 id="order_type_label" style="
+    float: left;
+" >Type:</h5><h5 id="order_type_text" style="
+    float: left;
+    font-weight: bold;
+"></h5>
+</div>
+
+
+<div class="column pull-right">
+<h5 id="order_total_label" style="
+    float: left;
+" >Order Total:</h5><h5 id="total" style="
+    float: left;
+    font-weight: bold;
+"></h5>
+</div>
+
+
+</div>
+   
+   
+
+
+
+  </div>
+</footer>
+</div>
+
+
+
+
+
+
+
+
+    <div id="output-log">
+    </div>
+    <style>
+    
+  </body>
+</html>

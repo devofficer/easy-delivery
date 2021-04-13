@@ -1,0 +1,940 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+    <script src="print.js"></script>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="node_modules/photonkit/dist/css/photon.css">
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+    <link rel="stylesheet" href="node_modules/xel/themes/material.css">
+
+    <link href="node_modules/tabulator-tables/dist/css/materialize/tabulator_materialize.min.css" rel="stylesheet">
+
+<script type="text/javascript" src="node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
+
+  <script src="node_modules/xel/xel.min.js"></script>
+<style>
+  .current_page
+  {
+    background: var(--secondary-color);
+    color: white;
+  }
+  x-throbber
+  {
+        display: flex;
+    justify-content: center;
+    margin: auto;
+
+  }
+  .tabs-group
+  {
+        margin-top: -1px;
+    display: flex;
+    border-top: 1px solid #989698;
+    border-bottom: 1px solid #989698;
+    flex-wrap: wrap;
+
+  }
+
+  .product-categories
+  {
+           display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex: 0 100%;
+    width: 100%;
+    background: #ececec;
+    width: 30%;
+    float: left;
+    display: block;
+    height: 100vh;
+    overflow: auto;
+  }
+  .products-search-wrapper
+  {
+        width: 70%;
+    float: left;
+    display: block;
+  }
+  input#woofood_product_search_input
+  {
+        display: flex;
+    flex: 1;
+
+  }
+  .product-category-box
+  {
+     display: flex;
+    flex: 0 10%;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+    border: none;
+    box-shadow: 2px 2px 3px #bbb;
+  }
+  .product-category-box:hover
+  {
+    background: #80808021;
+  }
+  .product-category-box.active
+  {
+    background-color: #00d1b2;
+    color:white;
+  }
+  .woofood-loading 
+  {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    display: flex;
+    background: #ffffff4f;
+    justify-content: center;
+    margin: auto;
+        display: none;
+  }
+  .woofood-loading.show
+  {
+    display:flex;
+  }
+  .pagination-search 
+  {
+        display: flex;
+    justify-content: center;
+
+  }
+  .search-bar
+  {
+    display: flex;
+    justify-content: center;
+    flex: 0 100%;
+    margin: auto;
+    width: 100%;
+    flex-wrap: wrap;
+    min-width: 100%;
+  }
+  .tax_label_header
+  {
+    display: none;
+  }
+  input.woofood-search
+  {
+       display: flex;
+    flex: 1;
+  }
+  .search_orders_btn
+  {
+       margin-right: 0px!important;
+    border-radius: 0px;
+  }
+.toolbar-actions
+{
+}
+.status-buttons
+{
+  display:none;
+}
+.status-buttons.show
+{
+  display:block;
+}
+.button-wrapper
+{
+  float: left;
+  margin:auto;
+}
+.list-status
+{
+     
+    border-radius: 6px;
+    width: auto;
+    max-width: 50px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    justify-content: center;
+    margin: auto;
+    line-height: 8px;
+    color: green;
+}
+.list-status.accepting
+{    color: blue;
+
+}
+  .tab-group
+  {
+        margin-top: -1px;
+    display: flex;
+    border-top: 1px solid #989698;
+    border-bottom: 1px solid #989698;
+    flex-wrap: wrap;
+  }
+  .tab-item
+  {
+    flex: 1 0 25%;
+  }
+  .column h5
+  {
+    width:100%;
+  }
+  .column h5
+  {
+        width: 100%;
+    text-align: center;
+    font-weight: normal;
+  }
+  .column h5:first-child
+  {
+   
+    font-weight: bold;
+  }
+  .button
+  {
+        background-color: white;
+    border-color: #dbdbdb;
+    border-width: 1px;
+    color: #363636;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: calc(0.375em - 1px);
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    padding-top: calc(0.375em - 1px);
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 3px;
+}
+
+.toolbar-actions
+{
+      margin-top: 4px;
+    margin-bottom: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    -webkit-app-region: drag;
+    height: 40px;
+    vertical-align: middle;
+    line-height: 7px;
+}
+.modal {
+  font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
+}
+.tab-content
+{
+  display:none;
+}
+.tab-content.show
+{
+  display:block;
+}
+html
+{
+  overflow-y:auto;
+}
+.product-wrapper
+{
+       width: 25%;
+    float: left;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #0000002e;
+    /* margin: 5px; */
+    height: calc(25vw + 100px);
+    max-width: 250px;
+    display: block;
+    max-height: 300px;
+}
+.product-wrapper:hover
+{
+      cursor:pointer;
+      pointer-events: all;
+}
+.product-wrapper.available
+{
+      border-bottom: 10px solid #23d160;
+}
+.product-wrapper.unavailable
+{
+        border-bottom: 10px solid #ff3860;
+    opacity: 0.6;
+  }
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__container {
+  background-color: #fff;
+  padding: 30px;
+  max-width: auto;
+  max-height: 100vh;
+  border-radius: 4px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: #00449e;
+  box-sizing: border-box;
+}
+
+.modal__close {
+  background: transparent;
+  border: 0;
+}
+
+.modal__header .modal__close:before { content: "\2715"; }
+
+.modal__content {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: rgba(0,0,0,.8);
+}
+
+.modal__btn {
+  font-size: .875rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  background-color: #e6e6e6;
+  color: rgba(0,0,0,.8);
+  border-radius: .25rem;
+  border-style: none;
+  border-width: 0;
+  cursor: pointer;
+  -webkit-appearance: button;
+  text-transform: none;
+  overflow: visible;
+  line-height: 1.15;
+  margin: 0;
+  will-change: transform;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: -webkit-transform .25s ease-out;
+  transition: transform .25s ease-out;
+  transition: transform .25s ease-out,-webkit-transform .25s ease-out;
+}
+
+.modal__btn:focus, .modal__btn:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+
+.modal__btn-primary {
+  background-color: #00449e;
+  color: #fff;
+}
+
+
+.minutes-container{
+float: left;
+
+}
+.woofood-minute 
+{
+   float: left;
+    width: auto;
+        margin: 5px;
+}
+.woofood-minute input
+{
+  display:none;
+      visibility: hidden;
+    padding: 5px;
+}
+.woofood-minute label
+{
+      cursor: pointer;
+    padding: 10px;
+    border: 1px solid black;
+    float: left;
+}
+
+.woofood-minute input:checked + label
+{
+      background: black;
+    color: white;
+
+}
+
+
+/**************************\
+  Demo Animation Style
+\**************************/
+@keyframes mmfadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@keyframes mmfadeOut {
+    from { opacity: 1; }
+      to { opacity: 0; }
+}
+
+@keyframes mmslideIn {
+  from { transform: translateY(15%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes mmslideOut {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10%); }
+}
+
+.micromodal-slide {
+  display: none;
+}
+
+.micromodal-slide.is-open {
+  display: block;
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__overlay {
+  animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__container {
+  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__overlay {
+  animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__container {
+  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide .modal__container,
+.micromodal-slide .modal__overlay {
+  will-change: transform;
+}
+</style>
+  </head>
+
+  <body>
+   
+
+
+
+
+
+
+  <div class="window">
+
+  <header class="toolbar toolbar-header">
+
+
+  <div class="columns">
+
+  <div class="column is-one-third">
+
+     <div class="toolbar-actions">
+
+
+<x-button id="open_reports" class="pull-left">
+  <x-box>
+  <x-icon name="money"></x-icon>
+    <x-label>Reportistica</x-label>
+  </x-box>
+</x-button>
+
+    
+
+
+  </div>
+  </div>
+  <div class="column is-one-third logo-link">
+       <img src="imgs/logo-black-clean.png" style="min-width:240px;width:auto;max-width:300px;"/>
+
+  </div>
+  <div class="column is-one-third">
+    <div class="toolbar-actions">
+<div class="button-wrapper">
+<x-box>
+  <x-switch id="delivery_force_disabled" value="1"></x-switch>
+  <x-label for="switch-1" >Disabilita Delivery</x-label>
+</x-box>
+<x-box>
+  <x-switch id="pickup_force_disabled"></x-switch>
+  <x-label for="switch-1" >Disabilita Asporto</x-label>
+</x-box>
+</div>
+<x-button id="settings_button" class="pull-right">
+  <x-box>
+  <x-icon name="settings"></x-icon>
+    <x-label>Opzioni</x-label>
+  </x-box>
+</x-button>
+
+    
+  </div>
+  </div>
+  </div>
+
+  
+
+
+
+
+
+</header>
+  <div class="window-content">
+
+
+
+
+
+
+
+
+
+    <div class="pane-group">
+      <div class="pane">
+
+
+<div class="tab-group">
+  <div class="tab-item active" id="orders-tab">
+    <span class="icon"></span>
+    Ordini
+  </div>
+   <div class="tab-item" id="search-orders-tab">
+    <span class="icon"></span>
+    Ricerca Ordini
+  </div>
+  <div class="tab-item" id="search-products-tab">
+    <span class="icon"></span>
+    Prodotti
+  </div>
+</div>
+
+<div class="tabs-content">
+
+    <div class="tab-content show orders" id="orders-tab">
+    <table class="table is-hoverable is-fullwidth" id="orders">
+  <thead>
+    <tr>
+      <th class="order_id_label">ID Ordine</th>
+      <th class="order_type_label">Consegna/Asporto</th>
+
+      <th class="order_status_label">Status</th>
+
+      <th class="customer_name_label">Cliente</th>
+      <th class="delivery_boy_label"> </th>
+
+      <th class="order_total_label">Totale</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+  </tbody>
+</table>
+  </div>
+
+
+
+
+ <div class="tab-content  search-orders" id="search-orders-tab">
+  <div class="search-bar">
+        <input type="text" placeholder="Cerca per ID Ordine, Cliente, Indirizzo" id="woofood_search_input" class="woofood-search"/>
+        <a  class="button is-primary search_orders_btn" id="search_orders_btn">Cerca</a>
+      </div>
+
+    <table class="table is-hoverable is-fullwidth" id="search-orders">
+  <thead>
+    <tr>
+      <th class="order_id_label">ID Ordine</th>
+      <th class="order_type_label">Consegna/Asporto</th>
+
+      <th class="order_status_label">Status</th>
+
+      <th class="customer_name_label">Cliente</th>
+      <th class="delivery_boy_label"> </th>
+
+      <th class="order_total_label">Totale</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+  </tbody>
+</table>
+
+<div class="pagination-search" ></div>
+  </div>
+
+
+   <div class="tab-content  search-products" id="search-products-tab">
+    <div class="product-categories">
+ 
+ 
+</div>
+<div class="products-search-wrapper">
+
+  <div class="search-bar">
+        <input type="text" placeholder="Cerca per nome prodotto" id="woofood_product_search_input" class="woofood-product-search"/>
+        <a  class="button is-primary search_products_btn" id="search_orders_btn">Cerca</a>
+      </div>
+
+    <table  id="search-products" style="width:100%;">
+</table>
+
+<div class="pagination-search-products" ></div>
+</div>
+  </div>
+
+
+
+
+
+
+  <div class="tab-content products" id="products-tab">
+
+<div class="tab-group">
+ 
+ 
+</div>
+
+<div class="tabs-content">
+</div>
+
+
+  </div>
+
+
+</div>
+
+     
+        
+
+
+
+
+
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+  
+
+
+  <footer class="toolbar toolbar-footer">
+    <span >EasyDelivery | Version : 2.6.4 </span>
+  </footer>
+</div>
+
+
+
+ <div class="modal micromodal-slide" id="order_modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-1-title">
+
+          </h2>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+        </header>
+        <main class="modal__content" id="modal-1-content">
+         <div class="order-content">
+
+
+<header class="toolbar toolbar-header">
+
+    <div class="toolbar-actions status-buttons">
+
+    </div>
+ 
+
+  <div class="toolbar-actions">
+
+    
+
+    
+    <button class="button is-warning pull-left" id="cancel_order">
+      Rifiuta Ordine
+    </button>
+    <button class="button is-danger pull-left" id="delete_order">
+      Elimina Ordine
+    </button>
+
+      <button class="button is-success pull-left" id="complete_order">
+      Completed
+    </button>
+      <div class="minutes-container" style="display:none">
+                                        
+                                  
+                                        
+
+
+                                        </div>
+
+
+     <button class="button is-success pull-left" id="accept_order" style="display:none;">
+      Accept Order
+    </button>
+
+     <div class="deliveryboys-container" style="display:none">
+                                        
+                                  
+                                        
+
+
+                                        </div>
+
+                                        <button class="button is-success pull-left" id="assign_delivery" style="display:none;">
+      Assign
+    </button>
+
+      <button class="button is-primary pull-right" id="print_order">
+        Stampa Ordine
+    </button>
+  </div>
+</header>
+  <div class="window-content">
+    <div style="
+    float: left;
+    width: 100%;
+    display: block;
+">
+
+      <div class="pane-md" style="padding:20px;float: left;">
+
+        <h3 id="customer_details_label">Dettagli Cliente</h3>
+<form>
+   
+    <x-label id="name_label">Full Name</x-label>
+     <x-box>
+   <x-input type="text" placeholder="First Name" id="billing_first_name"></x-input>
+    <x-input type="text" placeholder="Last Name" id="billing_last_name"></x-input>
+    </x-box>
+  
+    <x-label id="phone_label">Telefono</x-label>
+    <x-box>
+    <x-input type="text" placeholder="Phone" id="billing_phone"></x-input>
+  </x-box>
+      
+    <x-label id ="address_label">Indirizzo</x-label>
+    <x-box>
+    <x-input type="text"  placeholder="Address" id="billing_address_1"></x-input>
+    <x-input type="text"  placeholder="Address" id="billing_address_2"></x-input>
+    </x-box>
+    <x-label id="city_label">Città</x-label>
+    <x-box>
+    <x-input type="text" placeholder="City" id="billing_city"></x-input>
+    </x-box>
+   
+    <x-label id="postcode_label">CAP</x-label>
+    <x-box>
+    <x-input type="text" placeholder="Postal" id="billing_postcode"></x-input>
+    </x-box>
+
+ 
+    <x-label id="notes_label">Note Aggiuntive</x-label>
+    <x-box>
+    <textarea  rows="3" placeholder="Note aggiuntive…" id="billing_customer_note"></textarea>
+    </x-box>
+
+    
+ 
+
+  </form>
+
+
+
+      </div>
+      <div class="pane" style="padding:20px;float: left;">
+
+      <h3 id="order_details_label">Ordine</h3>
+
+      <table class="table">
+  <thead>
+    <tr>
+      <th><abbr id="product_label">Prodotto</abbr></th>
+      <th><abbr id="price_label">Prezzo</abbr></th>
+      <th><abbr id="qty_label">Qta</abbr></th>
+      <th class="tax_label_header"><abbr id="tax_label">Tax</abbr></th>
+
+      <th><abbr id="total_label">Totale</abbr></th>
+      
+    </tr>
+  </thead>
+  
+  <tbody id="order-line-items">
+  </tbody>
+  </table>
+
+
+
+
+
+
+
+      
+
+
+
+    </div>
+    </div>
+  </div>
+
+  <footer  style="
+    float: left;
+    width: 100%;
+">
+  <div class="toolbar-actions">
+    
+<div class="columns">
+
+
+<div class="column">
+<h5 id="order_date_label" style="
+    float: left;
+" >Data Ordine:</h5><h5 id="order_date_text" style="
+    float: left;
+
+"></h5>
+</div>
+
+<div class="column">
+<h5 id="payment_method_label" style="
+    float: left;
+" >Metodo di Pagamento:</h5><h5 id="payment_method_text" style="
+    float: left;
+"></h5>
+</div>
+
+<div class="column">
+ <h5 id="order_type_label" style="
+    float: left;
+" >Delivery/Asporto:</h5><h5 id="order_type_text" style="
+    float: left;
+"></h5>
+</div>
+
+<div class="column pull-right">
+<h5 id="date_to_deliver_label" style="
+    float: left;
+" >Data di Consegna:</h5><h5 id="date_to_deliver_text" style="
+    float: left;
+"></h5>
+</div>
+
+<div class="column pull-right">
+<h5 id="time_to_delivery_label" style="
+    float: left;
+" >Orario di Consegna:</h5><h5 id="time_to_delivery_text" style="
+    float: left;
+"></h5>
+</div>
+
+<div class="column pull-right">
+<h5 id="order_total_label" style="
+    float: left;
+" >Totale:</h5><h5 id="total" style="
+    float: left;
+"></h5>
+</div>
+
+
+
+
+
+</div>
+   
+   
+
+
+
+  </div>
+</footer>
+</div>
+        </main>
+        <footer class="modal__footer">
+        </footer>
+      </div>
+    </div>
+  </div>
+
+
+
+
+ <div class="modal micromodal-slide" id="reports_modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-1-title">
+            Reports
+          </h2>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+        </header>
+        <main class="modal__content" id="modal-1-content">
+        Here is the reporting
+        </main>
+        </div>
+        </div>
+        </div>
+
+
+
+
+         <div class="modal micromodal-slide" id="product_modal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <header class="modal__header">
+          <h2 class="modal__title" id="modal-1-title">
+            Product
+          </h2>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+        </header>
+        <main class="modal__content" id="modal-1-content">
+        
+        </main>
+        </div>
+        </div>
+        </div>
+        
+<div class="woofood-loading">
+    <x-throbber type="ring"></x-throbber>
+
+</div>
+
+     
+
+    
+  </body>
+</html>

@@ -1,0 +1,30 @@
+.minutes-container{
+float: left;
+
+}
+.woofood-minute 
+{
+	 float: left;
+    width: auto;
+        margin: 5px;
+}
+.woofood-minute input
+{
+	display:none;
+	    visibility: hidden;
+    padding: 5px;
+}
+.woofood-minute label
+{
+	    cursor: pointer;
+    padding: 10px;
+    border: 1px solid black;
+    float: left;
+}
+
+.woofood-minute input:checked + label
+{
+	    background: black;
+    color: white;
+
+}

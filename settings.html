@@ -1,0 +1,839 @@
+<html>
+<head>
+  <script src="settings.js"></script>
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="node_modules/photonkit/dist/css/photon.css">
+  <link rel="stylesheet" href="node_modules/xel/themes/material.css">
+  <script src="node_modules/xel/xel.min.js"></script>
+  <style>
+  x-box {
+    margin-bottom:2px;
+  }
+    .pane
+    {
+      padding:20px;
+
+    }
+    .toolbar-footer{
+      padding:10px;
+    }
+    x-textarea
+    {
+      max-height:120px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+ 
+
+
+
+
+  <div class="window">
+   <header class="toolbar toolbar-header">
+  
+  </header>
+
+    <div class="window-content">
+      <div class="pane-group">
+        <div class="pane">
+
+
+
+
+
+          <form>
+
+            <div class="form-group">
+              <x-label><strong>Licenza ED</strong></x-label>
+              <x-input type="password" class="form-control" placeholder="0000000000000" id="license">
+              </div>
+              <div class="form-group">
+                <x-label><strong>URL</strong></x-label>
+                <x-input type="text" class="form-control" placeholder="http://www.yourwebsite.com" id="website">
+                </div>
+                <div class="form-group">
+                  <x-label><strong>E-mail accesso piattaforma</strong></x-label>
+                  <x-input type="text" class="form-control" placeholder="Email" id="email">
+                  </div>
+                  <div class="form-group">
+                    <x-label><strong>Password accesso piattaforma</strong></x-label>
+                    <x-input type="password" class="form-control" placeholder="Password" id="password">
+                    </div>
+
+
+                    <x-label for="check_every" id="label-4">
+                      <x-box >
+                        <x-label for ="check_every"><strong>Controlla ogni</strong></strong></x-label>
+                      </x-box>
+                    </strong></x-label>
+                    <x-select id="check_every">
+                      <x-menu>
+                        <x-menuitem value="10">
+                          <x-label><strong>10 secondi</strong></x-label>
+                        </x-menuitem>
+                        <x-menuitem value="20">
+                          <x-label><strong>20 secondi</strong></x-label>
+                        </x-menuitem>
+                        <x-menuitem value="30">
+                          <x-label><strong>30 secondi</strong></x-label>
+                        </x-menuitem>
+                        <x-menuitem value="60">
+                          <x-label><strong>1 minuti</strong></x-label>
+                        </x-menuitem>
+                        <x-menuitem value="120">
+                          <x-label><strong>2 minuti</strong></x-label>
+                        </x-menuitem>
+                        <x-menuitem value="300">
+                          <x-label><strong>5 minuti</strong></x-label>
+                        </x-menuitem>
+
+                      </x-menu>
+                    </x-select>
+
+
+                    <x-label for="check_every" id="label-4">
+                      <x-box >
+                        <x-label for ="sound_selected"><strong>Scegli suono</strong></strong></x-label>
+                      </x-box>
+                    </strong></x-label>
+                    <x-select id="sound_selected">
+                      <x-menu>
+                        <x-menuitem value="beep-1">
+                          <x-label><strong>suono 1</strong></x-label>
+                        </x-menuitem>
+                        <x-menuitem value="beep-2">
+                          <x-label><strong>suono 2</strong></x-label>
+                        </x-menuitem>
+                       
+
+                      </x-menu>
+                    </x-select>
+
+                      <x-box>
+                      <x-checkbox id="esc_mode"></x-checkbox>
+                      <x-label for="esc_mode" id="label-1">
+                        <x-box vertical>
+                          <x-label><strong><strong>Modalità compatibilità ESC/POS (Beta)</strong></strong></x-label>
+                        </x-box>
+                      </strong></x-label>
+                    </x-box>
+
+
+                     <x-label for="printer_type" id="label-4">
+                      <x-box >
+                        <x-label><strong><strong>Tipo (compilare solo in modalità compatibilità)</strong></strong></x-label>
+                      </x-box>
+                    </strong></x-label>
+                    <x-select id="printer_type">
+                      <x-menu>
+                        <x-menuitem value="EPSON" selected> <x-label>EPSON</x-label> </x-menuitem>
+                      <x-menuitem value="STAR"> <x-label>STAR</x-label> </x-menuitem>
+                      </x-menu>
+                    </x-select>
+
+
+                    <x-label><strong>IP Stampante (compilare solo in modalità compatibilità)</strong></x-label>
+                <x-input type="text" class="form-control" placeholder="192.168.1.133" id="printer_ip">
+                </x-input>
+              
+                <div class="form-group">
+                  <x-label><strong>Porta Stampante (compilare solo in modalità compatibilità)</strong></x-label>
+                  <x-input type="text" class="form-control" placeholder="9100" id="printer_port">
+                  </x-input>
+                </div>
+
+
+
+
+                    <x-label for="printer_selected" id="label-4">
+                      <x-box >
+                        <x-label><strong><strong>Scegli Stampante</strong></strong></x-label>
+                      </x-box>
+                    </strong></x-label>
+                    <x-select id="printer_selected">
+                      <x-menu>
+                      </x-menu>
+                    </x-select>
+
+                       <x-label for="printer_copies" id="label-4">
+                      <x-box >
+                        <x-label><strong><strong>Copie Comanda</strong></strong></x-label>
+                      </x-box>
+                    </strong></x-label>
+                    <x-select id="printer_copies">
+                      <x-menu>
+                      <x-menuitem value="1" selected> <x-label>1</x-label> </x-menuitem>
+                      <x-menuitem value="2"> <x-label>2</x-label> </x-menuitem>
+                      <x-menuitem value="3"> <x-label>3</x-label> </x-menuitem>
+
+
+                      </x-menu>
+                    </x-select>
+
+                    
+
+
+
+                         <x-label for="check_every" id="label-4">
+                      <x-box >
+                        <x-label for ="check_every"><strong>Opzioni IVA (lasciare default)</strong></strong></x-label>
+                      </x-box>
+                    </strong></x-label>
+                    <x-select id="vat_options">
+                      <x-menu>
+                        <x-menuitem value="not_visible">
+                          <x-label><strong>Default</strong></x-label>
+                        </x-menuitem>
+                        <x-menuitem value="as_total">
+                          <x-label><strong>Total VAT only</strong></x-label>
+                        </x-menuitem>
+                        <x-menuitem value="per_item">
+                          <x-label><strong>Per Item / Fee</strong></x-label>
+                        </x-menuitem>
+                            <x-menuitem value="per_item_novat">
+                          <x-label><strong>Per Item without VAT / Total VAT </strong></x-label>
+                        </x-menuitem>
+                     
+
+                      </x-menu>
+                    </x-select>
+
+
+
+
+
+
+                      <x-box>
+                      <x-checkbox id="hide_extra_category"></x-checkbox>
+                      <x-label for="hide_extra_category" id="label-1">
+                        <x-box vertical>
+                          <x-label><strong><strong>Nascondi aggiunte/varianti prodotti
+                          </strong></strong></x-label>
+                        </x-box>
+                      </strong></x-label>
+                    </x-box>
+
+
+
+                    <x-box>
+                      <x-checkbox id="billing_details"></x-checkbox>
+                      <x-label for="billing_details" id="label-1">
+                        <x-box vertical>
+                          <x-label><strong><strong>Stampa dettagli Cliente</strong></strong></x-label>
+                          <x-label><strong>Enable Printing of Billing Details</strong></x-label>
+                        </x-box>
+                      </strong></x-label>
+                    </x-box>
+
+
+                     <x-box>
+                      <x-checkbox id="hide_billing_address"></x-checkbox>
+                      <x-label for="hide_billing_address" id="label-1">
+                        <x-box vertical>
+                          <x-label>Nascondi indirizzo dalla comanda</x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+                        <x-box>
+                      <x-checkbox id="hide_billing_city"></x-checkbox>
+                      <x-label for="hide_billing_city" id="label-1">
+                        <x-box vertical>
+                          <x-label>Nascondi città dalla comanda</x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+
+                    <x-box>
+                      <x-checkbox id="hide_billing_postal"></x-checkbox>
+                      <x-label for="hide_billing_postal" id="label-1">
+                        <x-box vertical>
+                          <x-label>Nascondi CAP dalla comanda</x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+
+
+                    <x-box>
+                      <x-checkbox id="shipping_details"></x-checkbox>
+                      <x-label for="shipping_details" id="label-2">
+                        <x-box vertical>
+                          <x-label><strong><strong>Stampa indirizzo aggiuntivo Cliente</strong></strong></x-label>
+                          <x-label><strong>Enable Printing of Shipping Details</strong></x-label>
+                        </x-box>
+                      </strong></x-label>
+                    </x-box>
+
+
+
+                     <x-box>
+                      <x-checkbox id="hide_shipping_address"></x-checkbox>
+                      <x-label for="hide_shipping_address" id="label-1">
+                        <x-box vertical>
+                          <x-label>Nascondi indirizzo aggiuntivo cliente dalla comanda</x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+                        <x-box>
+                      <x-checkbox id="hide_shipping_city"></x-checkbox>
+                      <x-label for="hide_shipping_city" id="label-1">
+                        <x-box vertical>
+                          <x-label>Nascondi città indirizzo aggiuntivo cliente</x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+
+                    <x-box>
+                      <x-checkbox id="hide_shipping_postal"></x-checkbox>
+                      <x-label for="hide_shipping_postal" id="label-1">
+                        <x-box vertical>
+                          <x-label>Nascondi CAP indirizzo aggiuntivo cliente</x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+                       <x-box>
+                      <x-checkbox id="hide_subtotal"></x-checkbox>
+                      <x-label for="hide_subtotal" id="label-1">
+                        <x-box vertical>
+                          <x-label><strong>Nascondi SubTotale dalla comanda
+                          </strong></x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+                      <x-box>
+                      <x-checkbox id="hide_total"></x-checkbox>
+                      <x-label for="hide_total" id="label-1">
+                        <x-box vertical>
+                          <x-label><strong>Nascondi Totale dalla comanda</strong></x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+
+                     <x-box>
+                      <x-checkbox id="hide_discount"></x-checkbox>
+                      <x-label for="hide_discount" id="label-1">
+                        <x-box vertical>
+                          <x-label><strong>Nascondi sconti dalla comanda</strong></x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+
+ <div class="form-group">
+                  <x-label><strong>Minuti attesa (Accetta/Rifiuta)</strong></x-label>
+                  <p>Separati da virgola (Es: 10,20,30)
+                  </p>
+                  <x-input type="text" class="form-control" placeholder="20,30,60,90" id="minutes_to_arrive_values">
+                  </div>
+
+                   <x-box>
+                      <x-checkbox id="print_minutes"></x-checkbox>
+                      <x-label for="hide_discount" id="label-1">
+                        <x-box vertical>
+                          <x-label><strong>Stampa minuti attesa </strong></x-label>
+                        </x-box>
+                      </x-label>
+                    </x-box>
+
+
+
+                  </form>
+                </div>
+                
+
+                <div class="pane">
+
+
+ <!-- <x-label><strong>Enable Delivery Boys</strong></x-label> -->
+
+
+                 <!-- <x-box>
+                <x-checkbox id="enable_deliveryboys"></x-checkbox>
+              <x-label for="enable_deliveryboys" id="enable_deliveryboys">Enable</x-label>
+                  </x-box> -->
+
+
+                  <x-label><strong>Stampa anche</strong></x-label>
+
+
+                 <x-box>
+                <x-checkbox id="print_doorbell"></x-checkbox>
+              <x-label for="print_doorbell" id="print_doorbell">Citofono</x-label>
+                  </x-box>
+
+                   <x-label><strong>Completa ordini dopo stampa</strong></x-label>
+
+
+                 <x-box>
+                <x-checkbox id="auto_complete_order"></x-checkbox>
+              <x-label for="auto_complete_order" id="auto_complete_order">Attiva</x-label>
+                  </x-box>
+
+
+
+                
+
+                 
+
+                  
+
+                <x-label><strong>Impostazioni aggiuntive</strong></x-label>
+
+                  <x-label>Proteggi impostazioni con password</x-label>
+                    <xbox>
+                    <x-input type="password" id="master_password_set"></x-input>
+                    </xbox>
+                    
+
+                    <x-label><strong>Campi per il tecnico</strong></x-label>
+                  
+<div id="meta_div">
+</div>
+<div id="meta_add_div">
+                <x-box>
+                <x-input id="new_meta_key">
+  <x-label>Meta Key</x-label>
+</x-input>
+
+ <x-input id="new_meta_name">
+  <x-label>Name</x-label>
+</x-input>
+ <x-button id="add_meta_key">
+  <x-icon name="add"></x-icon>
+</x-button>
+               </x-box>
+</div>
+
+
+<x-label style="display:none;"><strong>Additional Printers</strong></x-label>
+                  
+<div id="printers_div" >
+</div>
+<div id="printer_add_div" style="display:none;">
+
+
+  <x-box>
+
+      <x-select id="new_printer_mode">
+                      <x-menu>
+
+                      <x-menuitem value="0" selected> <x-label>Mode</x-label> </x-menuitem>
+                      <x-menuitem value="normal" selected> <x-label>Normal</x-label> </x-menuitem>
+                      <x-menuitem value="esc_pos" selected> <x-label>ESC/POS</x-label> </x-menuitem>
+
+                      </x-menu>
+                    </x-select>
+
+                     <x-input id="new_printer_ip" style="display:none;">
+  <x-label>Printer IP</x-label>
+</x-input>
+    <x-input id="new_printer_port" style="display:none;">
+  <x-label>Printer Port</x-label>
+</x-input>
+
+    <x-select id="new_printer">
+
+
+                      <x-menu>
+
+                                              <x-menuitem value="0" selected> <x-label>Printer</x-label> </x-menuitem>
+
+                      </x-menu>
+                    </x-select>
+
+                    <x-select id="new_printer_copies">
+                      <x-menu>
+                      <x-menuitem value="0" selected> <x-label>Copies</x-label> </x-menuitem>
+
+                      <x-menuitem value="1" selected> <x-label>1</x-label> </x-menuitem>
+                      <x-menuitem value="2"> <x-label>2</x-label> </x-menuitem>
+                      <x-menuitem value="3"> <x-label>3</x-label> </x-menuitem>
+
+
+                      </x-menu>
+                    </x-select>
+                     
+
+
+
+    <x-button id="add_printer">
+      <x-icon name="add"></x-icon>
+    </x-button>
+
+
+  </x-box>
+
+
+
+</div>
+
+
+
+
+
+
+ <x-label for="receipt_font_size">
+                      <x-box >
+                        <x-label><strong><strong>Dimensione Font(px)</strong></strong></x-label>
+                      </x-box>
+                    </strong></x-label>
+                    <x-select id="receipt_font_size_input">
+                      <x-menu>
+                                                
+                                                <x-menuitem value="10"> <x-label>10</x-label> </x-menuitem>
+
+                                                <x-menuitem value="11"> <x-label>11</x-label> </x-menuitem>
+
+                                                  <x-menuitem value="12"> <x-label>12</x-label> </x-menuitem>
+
+                                                  <x-menuitem value="13"> <x-label>13</x-label> </x-menuitem>
+
+                                                  <x-menuitem value="14"> <x-label>14</x-label> </x-menuitem>
+
+                                                  <x-menuitem value="15"> <x-label>15</x-label> </x-menuitem>
+
+                          <x-menuitem value="16"> <x-label>16</x-label> </x-menuitem>
+
+                      <x-menuitem value="17"> <x-label>17</x-label> </x-menuitem>
+                      <x-menuitem value="18" selected> <x-label>18</x-label> </x-menuitem>
+                     <x-menuitem value="19" > <x-label>19</x-label> </x-menuitem>
+                     <x-menuitem value="20" > <x-label>20</x-label> </x-menuitem>
+                     <x-menuitem value="21" > <x-label>21</x-label> </x-menuitem>
+                     <x-menuitem value="22" > <x-label>22</x-label> </x-menuitem>
+                     <x-menuitem value="23" > <x-label>23</x-label> </x-menuitem>
+                     <x-menuitem value="24" > <x-label>24</x-label> </x-menuitem>
+
+
+
+                      </x-menu>
+                    </x-select>
+
+
+                     <x-label><strong>Logo Software</strong></x-label>
+
+<div  id="software_image_container" style="max-height:100px;width:100%;max-width:100%; ">
+</div>
+ <x-buttons tracking="3">
+<x-button id="select_software_logo">
+  <x-label>Scegli</x-label>
+</x-button>
+<x-button id="remove_software_logo">
+  <x-label>Rimuovi</x-label>
+</x-button>
+</x-buttons>
+<input type="hidden" id="software_image_base64"/> 
+
+
+                <x-label><strong>Logo sulla Comanda</strong></x-label>
+
+<div  id="receipt_image_container" style="max-height:100px;width:100%;max-width:100%; ">
+</div>
+ <x-buttons tracking="3">
+<x-button id="select_receipt_logo">
+  <x-label>Scegli</x-label>
+</x-button>
+<x-button id="remove_receipt_logo">
+  <x-label>Rimuovi</x-label>
+</x-button>
+</x-buttons>
+<input type="hidden" id="receipt_image_base64"/> 
+
+<x-label><strong>Testo ad inizio comanda</strong></x-label>
+<x-textarea id="receipt_header_text"></x-textarea>
+<x-label ><strong>Testo a fine comanda</strong></x-label>
+<x-textarea id="receipt_footer_text"></x-textarea>
+
+  <x-button type="submit" class="pull-right" id="fetch_deliveryboys"> 
+
+               <x-label> Sync (Tecnico)</x-label>
+               <x-notification timeout="2000">Delivery Boys Synced</x-notification>
+
+             </x-button>
+
+
+
+
+
+                </div>
+
+
+
+
+                <div class="pane">
+                  <x-label><strong>Impostazioni di Traduzione (opzionale)</strong></x-label>
+                    <x-label>Name</x-label>
+                    <xbox>
+                    <x-input id="translated_name"></x-input>
+                    </xbox>
+
+                      <x-label>Order ID</x-label>
+                    <xbox>
+                    <x-input id="translated_order_id"></x-input>
+                    </xbox>
+
+
+
+                    <x-label>Address</x-label>
+                    <xbox>
+                    <x-input id="translated_address"></x-input>
+                    </xbox>
+
+                  <x-label>Postal Code</x-label>
+                    <xbox>
+                    <x-input id="translated_postcode"></x-input>
+                    </xbox>
+
+                    <x-label>Phone</x-label>
+                    <xbox>
+                    <x-input id="translated_phone"></x-input>
+                    </xbox>
+
+                    <x-label>City</x-label>
+                    <xbox>
+                    <x-input id="translated_city"></x-input>
+                    </xbox>
+
+                    <x-label>Notes</x-label>
+                    <xbox>
+                    <x-input id="translated_notes"></x-input>
+                    </xbox>
+
+                    <x-label>Order Date</x-label>
+                    <xbox>
+                    <x-input id="translated_order_date"></x-input>
+                    </xbox>
+
+                    <x-label>Payment Method</x-label>
+                    <xbox>
+                    <x-input id="translated_payment_method"></x-input>
+                    </xbox>
+
+                     <x-label>Order Details</x-label>
+                    <xbox>
+                    <x-input id="translated_order_details"></x-input>
+                    </xbox>
+
+                     <x-label>Customer Details</x-label>
+                    <xbox>
+                    <x-input id="translated_customer_details"></x-input>
+                    </xbox>
+
+                    <x-label>Product</x-label>
+                    <xbox>
+                    <x-input id="translated_product"></x-input>
+                    </xbox>
+
+                     <x-label>Total</x-label>
+                    <xbox>
+                    <x-input id="translated_total"></x-input>
+                    </xbox>
+
+
+                    <x-label>Subtotal</x-label>
+                    <xbox>
+                    <x-input id="translated_subtotal"></x-input>
+                    </xbox>
+
+                     <x-label>VAT</x-label>
+                    <xbox>
+                    <x-input id="translated_vat"></x-input>
+                    </xbox>
+                    <x-label>VAT Included</x-label>
+                    <xbox>
+                    <x-input id="translated_vat_included"></x-input>
+                    </xbox>
+
+                     <x-label>Status</x-label>
+                    <xbox>
+                    <x-input id="translated_status"></x-input>
+                    </xbox>
+
+                     <x-label>Minutes</x-label>
+                    <xbox>
+                    <x-input id="translated_minutes_to_arrive"></x-input>
+                    </xbox>
+
+
+
+
+                    <x-label>Discount</x-label>
+                    <xbox>
+                    <x-input id="translated_discount"></x-input>
+                    </xbox>
+
+
+                     <x-label>Price</x-label>
+                    <xbox>
+                    <x-input id="translated_price"></x-input>
+                    </xbox>
+
+                     <x-label>Product Name</x-label>
+                    <xbox>
+                    <x-input id="translated_product_name"></x-input>
+                    </xbox>
+
+                     <x-label>Enabled</x-label>
+                    <xbox>
+                    <x-input id="translated_enabled"></x-input>
+                    </xbox>
+                     <x-label>Image</x-label>
+                    <xbox>
+                    <x-input id="translated_image"></x-input>
+                    </xbox>
+
+                     <x-label>QTY</x-label>
+                    <xbox>
+                    <x-input id="translated_qty"></x-input>
+                    </xbox>
+
+                    <x-label>Cancel Order</x-label>
+                    <xbox>
+                    <x-input id="translated_cancel_order"></x-input>
+                    </xbox>
+
+                       <x-label>Delete Order</x-label>
+                    <xbox>
+                    <x-input id="translated_delete_order"></x-input>
+                    </xbox>
+
+                     <x-label>Complete Order</x-label>
+                    <xbox>
+                    <x-input id="translated_complete_order"></x-input>
+                    </xbox>
+                    
+                    <x-label>Print Order</x-label>
+                    <xbox>
+                    <x-input id="translated_print_order"></x-input>
+                    </xbox>
+
+                    <x-label>Doorbell</x-label>
+                    <xbox>
+                    <x-input id="translated_doorbell"></x-input>
+                    </xbox>
+
+                        <x-label>Additional Comments</x-label>
+                    <xbox>
+                    <x-input id="translated_additional_comments"></x-input>
+                    </xbox>
+
+                      <x-label>Order Type</x-label>
+                    <xbox>
+                    <x-input id="translated_order_type"></x-input>
+                    </xbox>
+
+
+                      <x-label>Time To Deliver</x-label>
+                    <xbox>
+                    <x-input id="translated_time_to_delivery"></x-input>
+                    </xbox>
+
+                     <x-label>Time To Pickup</x-label>
+                    <xbox>
+                    <x-input id="translated_time_to_pickup"></x-input>
+                    </xbox>
+
+
+                    <x-label>Date To Deliver</x-label>
+                    <xbox>
+                    <x-input id="translated_date_to_deliver"></x-input>
+                    </xbox>
+
+                     <x-label>Date To Pickup</x-label>
+                    <xbox>
+                    <x-input id="translated_date_to_pickup"></x-input>
+                    </xbox>
+
+
+
+
+                      <x-label>Additional Information</x-label>
+                    <xbox>
+                    <x-input id="translated_additional_information"></x-input>
+                    </xbox>
+
+                      <x-label>Billing</x-label>
+                    <xbox>
+                    <x-input id="translated_billing"></x-input>
+                    </xbox>
+
+
+                      <x-label>Shipping</x-label>
+                    <xbox>
+                    <x-input id="translated_shipping"></x-input>
+                    </xbox>
+
+
+
+
+
+
+
+
+
+                  
+
+
+
+
+                </div>
+
+
+
+
+
+
+              </div>
+            </div>
+            <footer class="toolbar toolbar-footer">
+             <x-button type="submit" class="pull-left" id="restore_defaults">
+
+               <x-label>Ripristina Default</x-label>
+
+             </x-button>
+
+              <x-button type="submit" class="pull-right" id="save_settings">
+
+               <x-label> Salva</x-label>
+               <x-notification timeout="2000">Settings Saved</x-notification>
+
+             </x-button>
+
+
+           </footer>
+
+         </div>
+
+
+
+
+ <div id="master_div" style="background:white;position;position: absolute;top: 0px;bottom: 0px;left: 0px;right: 0px;z-index: 99999;width: 100%;text-align: center;padding-top: 100px;/* display: none; */"><label style="
+    float: left;
+    width: 100%;
+">Master Password</label>
+    
+    <input type="password" id="master_password"><button class="button" id="submit_master">Enter</button>
+</div>
+
+
+         <div id="output-log">
+         </div>
+       </body>
+       </html>
